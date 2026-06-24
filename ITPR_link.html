@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITPR_订单快查_BY_Slash.Sun@ap.averydennison.com</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f7fa;
+        }
+        .container {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>🚀ITPR_订单快查_BY_Slash.Sun 前缀16</h2>
+    <input type="text" id="inputString" placeholder="请输入订单号" required>
+    <button onclick="redirectToUrl()">订单查看</button>
+</div>
+
+<script>
+    function redirectToUrl() {
+        // 1. 获取输入框的值
+        const inputVal = "16" + document.getElementById('inputString').value.trim();
+        
+        if (!inputVal) {
+            alert('请输入内容！');
+            return;
+        }
+
+        // 2. 配置你的特定 URL 基础路径（在此处修改你的目标 URL）
+        // 记得在末尾视情况加上 '/' 或 '?' 等参数连接符
+        const baseUrl = "https://script.google.com/a/macros/ap.averydennison.com/s/AKfycby3En1FDWbHqTT59slmWIKkFBNVoB9JlcEP2RdzogQJpxS3h-u3/exec?openpage=UHJpbnRSZXF1ZXN0&req=";
+
+        try {
+            // 3. 将字符串转换为 Base64 编码
+            // 使用 btoa(encodeURIComponent(...)) 可以完美支持中文等 UTF-8 字符，防止乱码
+            const base64Encoded = btoa(encodeURIComponent(inputVal).replace(/%([0-9A-F]{2})/g, function(match, p1) {
+                return String.fromCharCode('0x' + p1);
+            }));
+
+            // 4. 拼接完整的 URL
+            const finalUrl = baseUrl + base64Encoded;
+
+            // 5. 在当前页面跳转（如果想在新窗口打开，可以用 window.open(finalUrl, '_blank')）
+            //window.location.href = finalUrl;
+            window.open(finalUrl, '_blank');
+
+        } catch (error) {
+            console.error('编码失败:', error);
+            alert('编码过程中发生错误，请重试。');
+        }
+    }
+</script>
+
+</body>
+</html>
